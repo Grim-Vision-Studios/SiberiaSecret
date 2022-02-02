@@ -1,0 +1,7 @@
+D:\Unreal_Projects\SiberiaSecret\Intermediate\Build\Win64\UE4Editor\Development\SiberiaSecret\Definitions.SiberiaSecret.h
+D:\Unreal_Projects\SiberiaSecret\Source\SiberiaSecret\Public\PlayerCharacter/CppGamemode.h
+D:\EpicGames\Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+D:\EpicGames\Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+D:\EpicGames\Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+D:\EpicGames\Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+D:\Unreal_Projects\SiberiaSecret\Intermediate\Build\Win64\UE4Editor\Inc\SiberiaSecret\CppGamemode.generated.h
