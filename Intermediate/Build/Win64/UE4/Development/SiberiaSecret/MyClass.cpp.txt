@@ -1,2 +1,0 @@
-D:\Unreal_Projects\SiberiaSecret\Intermediate\Build\Win64\UE4\Development\SiberiaSecret\Definitions.SiberiaSecret.h
-D:\Unreal_Projects\SiberiaSecret\Source\SiberiaSecret\Public\MyClass.h
