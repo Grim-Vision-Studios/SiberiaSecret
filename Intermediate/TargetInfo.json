@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SiberiaSecret",
+			"Path": "D:\\Unreal_Projects\\SiberiaSecret\\Source\\SiberiaSecret.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SiberiaSecretEditor",
+			"Path": "D:\\Unreal_Projects\\SiberiaSecret\\Source\\SiberiaSecretEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
