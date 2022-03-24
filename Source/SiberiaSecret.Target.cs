@@ -10,6 +10,6 @@ public class SiberiaSecretTarget : TargetRules
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 
-		ExtraModuleNames.AddRange( new string[] { "SiberiaSecret" } );
+		ExtraModuleNames.AddRange( new string[] { "SiberiaSecret","MH_GrappleHook" } );
 	}
 }
