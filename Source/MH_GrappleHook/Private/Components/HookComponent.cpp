@@ -81,8 +81,8 @@ bool UHookComponent::TraceForPhysicsBodiesLine(UCameraComponent* CameraComp, FHi
 
 	// Interactable objects.
 	TArray<TEnumAsByte<EObjectTypeQuery>> InteractableObjects{
-		EObjectTypeQuery::ObjectTypeQuery8,	// Hookable object type. 8
-		EObjectTypeQuery::ObjectTypeQuery9  // Pullable object type. 9
+		EObjectTypeQuery::ObjectTypeQuery7,	// Hookable object type. 6
+		EObjectTypeQuery::ObjectTypeQuery8  // Pullable object type. 7
 	};
 
 	// Ignore Actors
@@ -91,10 +91,13 @@ bool UHookComponent::TraceForPhysicsBodiesLine(UCameraComponent* CameraComp, FHi
 	FHitResult HitResult;
 
 
-	//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Cyan, "LineTraceing");
+//	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Cyan, "LineTraceing");
 
 	const bool Hit = UKismetSystemLibrary::SphereTraceSingleForObjects(GetWorld(), StartLocation, EndLocation, HookRadius,
-		InteractableObjects, false, IgnoreActors, EDrawDebugTrace::ForDuration, HitResult, true);
+		InteractableObjects, false, IgnoreActors, EDrawDebugTrace::None, HitResult, true);
+
+
+
 
 	if (Hit)
 	{
@@ -111,15 +114,16 @@ bool UHookComponent::TraceForPhysicsBodiesLine(UCameraComponent* CameraComp, FHi
 		// Checking for the static mesh actor object type.
 		switch (UEngineTypes::ConvertToObjectType(HitResult.GetComponent()->GetCollisionObjectType()))
 		{
-		case EObjectTypeQuery::ObjectTypeQuery8: // Hookable objects
+		case EObjectTypeQuery::ObjectTypeQuery7: // Hookable objects
 
-			GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Purple, TEXT("Hookable!"));
+			//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Purple, TEXT("Hookable!"));
+			HookTowards();
 
 			break;
 
-		case EObjectTypeQuery::ObjectTypeQuery9: // Pullable objects
+		case EObjectTypeQuery::ObjectTypeQuery8: // Pullable objects
 
-			GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Purple, TEXT("Pullable!"));
+			//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Purple, TEXT("Pullable!"));
 			PullTowards(HitResult.GetActor());
 			break;
 		}
@@ -136,7 +140,7 @@ void UHookComponent::T_HookProgress(float value)
 
 	if (GetOwner()->GetActorLocation() == HitLocation)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Cyan, "Done");
+		//GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Cyan, "Done");
 		bHasHookLocation = false;
 		TimerHandel.Invalidate();
 	}
@@ -149,7 +153,7 @@ void UHookComponent::T_HookProgress(float value)
 void UHookComponent::T_HookFinish()
 {
 	bHasHookLocation = false;
-	GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Emerald, "Finish");
+//	GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Emerald, "Finish");
 }
 
 void UHookComponent::T_PullProgress(float value)
@@ -157,7 +161,7 @@ void UHookComponent::T_PullProgress(float value)
 	FVector HitLocation = hitActor->GetActorLocation();
 	if (HitLocation.Equals(OwnerLoaction, 30.0f))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Emerald, "At Loction!!!!!");
+	//	GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Emerald, "At Loction!!!!!");
 		TimerHandel.Invalidate();
 		T_Pull.Stop();
 		OnT_FinishPull.Execute();
@@ -169,7 +173,7 @@ void UHookComponent::T_PullProgress(float value)
 void UHookComponent::T_PullFinish()
 {
 	bHasPulled = false;
-	GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Emerald, "Finish");
+//	GEngine->AddOnScreenDebugMessage(-1, 20, FColor::Emerald, "Finish");
 	Cast<UPrimitiveComponent>(hitActor->GetRootComponent())->SetSimulatePhysics(true);
 }
 
@@ -220,7 +224,7 @@ void UHookComponent::PullTowards(AActor* Actor)
 	if (bHasHookLocation == true) { return; }
 	hitActor = Actor;
 	hitActor->SetActorLocation(FVector(
-		hitActor->GetActorLocation().X, hitActor->GetActorLocation().Y, hitActor->GetActorLocation().Z));
+	hitActor->GetActorLocation().X, hitActor->GetActorLocation().Y, hitActor->GetActorLocation().Z));
 	hitActor->DisableComponentsSimulatePhysics();
 
 	FTimerDelegate TimeDelegate;
